@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EditRole() {
+function ListHasilPertanian() {
     return (
         <div style={{ marginLeft: "12%", position: "absolute"}} className="w-9/12">
             
@@ -8,4 +8,4 @@ function EditRole() {
     );
 }
 
-export default EditRole;
+export default ListHasilPertanian;
