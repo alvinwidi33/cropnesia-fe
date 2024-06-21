@@ -1,8 +1,8 @@
 import React from 'react';
 
-function ListHasilPertanian(props) {
+function ListHasilPertanian() {
     return (
-        <div style={{ marginLeft: "12%", position: "absolute"}} className="w-9/12">
+        <div>
             
         </div>
     );
