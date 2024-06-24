@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Login/>}></Route>
         <Route path="/add-user" element={<AddUser/>}></Route>
-        <Route path="/list-user" element={<ListUser/>}></Route>
+        <Route path="/list-user" element={<ProtectedRoute child={<ListUser/>}/>}/>
         <Route path="/add-request" element={<AddRequest/>}></Route>
         <Route path="/add-tanaman" element={<AddTanaman/>}></Route>
         <Route path="/list-pertanian-all" element={<ListPertanianAll/>}/>
