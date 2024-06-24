@@ -34,6 +34,7 @@ function AddUser() {
     };
 
     const handleSubmit = async (e) => {
+        const token = window.localStorage.getItem("token");
         e.preventDefault();
         setLoading(true);
 
@@ -41,7 +42,8 @@ function AddUser() {
             const response = await fetch('https://cropnesia-be.vercel.app/api/user/add-user/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: 'Token ' + token,
                 },
                 body: JSON.stringify(user)
             });
