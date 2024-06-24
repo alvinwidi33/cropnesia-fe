@@ -66,7 +66,7 @@ function Login() {
       <h1 className="text-center text-4xl font-semibold text-[#055C5B] absolute w-full font-[Inter, sans-serif]" style={{ top: '16px' }}>
         Cropnesia
       </h1>
-      <div className="absolute w-full">
+      <div className="absolute w-[100%]">
         <hr className="w-full border-t-2 border-[#055C5B] mt-1" />
         <div className="flex justify-center items-center mt-12">
           <img src={login} alt="login" className="w-80 h-auto rounded-bl-lg rounded-tl-lg" />
@@ -96,10 +96,12 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className='absolute right-[70px] mt-[10px]'>
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className='absolute right-[70px] mt-[10px] '>
                 <img src={showIcon} alt="show" />
               </button>
-              <button type="submit" className='mt-12 ml-[70px] bg-[#75C4B5] rounded-3xl h-9 px-4 w-[440px] text-white font-semibold'>Masuk</button>
+              <button type="submit" className="mt-12 ml-[70px] bg-[#75C4B5] rounded-3xl h-9 px-4 w-[440px] text-white font-semibold hover:bg-[#2DB296] focus:outline-none active:bg-[#055C5B] transition-colors duration-300">
+                Masuk
+            </button>
             </form>
             {successMessage && (
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#EFF5F5] p-4 rounded-lg shadow-lg flex items-center">
