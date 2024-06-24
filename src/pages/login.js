@@ -34,7 +34,7 @@ function Login() {
         window.localStorage.setItem("username", data.user.username);
         window.localStorage.setItem("daerah", data.user.daerah);
         window.localStorage.setItem("role", data.user.role);
-        setSuccessMessage("Berhasil Masuk!");
+        setSuccessMessage("✅ Berhasil Masuk!");
 
         setTimeout(() => {
           setSuccessMessage("");
@@ -45,18 +45,18 @@ function Login() {
           } else if (data.user.role === 'Petani') {
             navigate("/list-hasil-pertanian");
           }
-        }, 5000);
+        }, 2000);
       } else {
-        setErrorMessage(data.message || "Gagal Masuk");
+        setErrorMessage(data.message || "❌ Gagal Masuk");
         setTimeout(() => {
           setErrorMessage("");
-        }, 5000);
+        }, 2000);
       }
     } catch (error) {
-      setErrorMessage("Terjadi error. Coba lagi nanti");
+      setErrorMessage("❌ Terjadi error. Coba lagi nanti");
       setTimeout(() => {
         setErrorMessage("");
-      }, 5000);
+      }, 2000);
     }
   };
 
@@ -67,7 +67,7 @@ function Login() {
         Cropnesia
       </h1>
       <div className="absolute w-[100%]">
-        <hr className="w-full border-t-2 border-[#055C5B] mt-1" />
+        <hr className="min-w-full border-t-2 border-[#055C5B] mt-1" />
         <div className="flex justify-center items-center mt-12">
           <img src={login} alt="login" className="w-80 h-auto rounded-bl-lg rounded-tl-lg" />
           <div className="bg-[#055C5B] h-[415px] w-[560px] relative rounded-tr-lg rounded-br-lg">
@@ -99,7 +99,7 @@ function Login() {
               <button type="button" onClick={() => setShowPassword(!showPassword)} className='absolute right-[70px] mt-[10px] '>
                 <img src={showIcon} alt="show" />
               </button>
-              <button type="submit" className="mt-12 ml-[70px] bg-[#75C4B5] rounded-3xl h-9 px-4 w-[440px] text-white font-semibold hover:bg-[#2DB296] focus:outline-none active:bg-[#055C5B] transition-colors duration-300">
+              <button type="submit" className="mt-12 ml-[70px] bg-[#75C4B5] rounded-3xl h-9 px-4 w-[440px] text-white font-semibold hover:bg-[#2DB296] focus:outline-none active:bg-[#75C4B5] transition-colors duration-300">
                 Masuk
             </button>
             </form>
