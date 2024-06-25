@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../images/image-removebg-preview 2.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 function Navbar() {
     const [activeUser, setActiveUser] = useState({});
@@ -36,7 +36,7 @@ function Navbar() {
     }, [token]);
 
     const handleLogout = () => {
-        setSuccessMessage("Berhasil Logout");
+        setSuccessMessage("✅ Berhasil Logout");
         window.localStorage.removeItem("token");
         setTimeout(() => {
             navigate("/");
@@ -48,7 +48,9 @@ function Navbar() {
         <React.Fragment>
             <div className="relative flex items-center justify-between">
                 <img src={logo} alt="logo" className="w-16 h-auto ml-10" />
+                <Link to="/list-user">
                 <p className="absolute top-0 left-32 mt-6 text-xl font-normal text-[#055C5B] font-[Inter, sans-serif]">Beranda</p>
+                </Link>
                 <button
                     className="absolute top-5 right-16 bg-[#055C5B] text-white rounded-md hover:bg-[#2DB296] focus:outline-none w-[88px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#055C5B]"
                     onClick={handleLogout}>
