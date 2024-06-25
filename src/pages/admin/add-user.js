@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar-admin';
 import Loading from '../../components/loading';
 import { useNavigate } from 'react-router-dom';
+import ConfirmationModal from '../../components/confirmation-modal'; // Adjust the import path as needed
 
 function AddUser() {
     const [loading, setLoading] = useState(true); // Initially set to true
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [showModal, setShowModal] = useState(false);
     const [user, setUser] = useState({
         username: '',
         name: '',
@@ -26,17 +28,21 @@ function AddUser() {
     }, []);
 
     const handleChange = (e) => {
-        const { value1, value2 } = e.target;
+        const { name, value } = e.target;
         setUser((prevUser) => ({
             ...prevUser,
-            [value1]: value2
+            [name]: value
         }));
     };
 
-    const handleSubmit = async (e) => {
-        const token = window.localStorage.getItem("token");
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true);
+        setShowModal(true); // Show confirmation modal
+    };
+
+    const handleConfirm = async () => {
+        setShowModal(false);
+        const token = window.localStorage.getItem("token");
 
         try {
             const response = await fetch('https://cropnesia-be.vercel.app/api/user/add-user/', {
@@ -50,7 +56,7 @@ function AddUser() {
 
             if (response.ok) {
                 const data = await response.json();
-                setSuccessMessage("Berhasil menambah user!");
+                setSuccessMessage("✅ Berhasil menambah user!");
                 setErrorMessage("");
                 setUser({
                     username: '',
@@ -59,16 +65,19 @@ function AddUser() {
                     daerah: '',
                     role: '',
                 });
+                setTimeout(() => {
+                    setSuccessMessage("");
+                    navigate("/list-user");
+                }, 3000);
             } else {
                 const errorData = await response.json();
-                setErrorMessage(errorData.message || "Gagal tambah User");
+                setErrorMessage(errorData.message || "❌ Gagal tambah User");
                 setSuccessMessage("");
             }
         } catch (error) {
-            setErrorMessage("Terjadi Error coba lagi nanti");
+            setErrorMessage("❌ Terjadi Error coba lagi nanti");
             setSuccessMessage("");
         }
-
         setLoading(false);
     };
 
@@ -80,70 +89,105 @@ function AddUser() {
         <React.Fragment>
             <Navbar />
             <div style={{ marginLeft: "10%", position: "absolute" }} className="w-9/12">
-                <div className="w-full mt-8">
-                <h1 className="ml-24 font-semibold text-[#055C5B] text-center font-[Inter, sans-serif] text-2xl">Form Tambah User</h1>
-                {successMessage && <div className="alert alert-success">{successMessage}</div>}
-                {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>Username:</label>
+                <div className="w-full mt-8 ">
+                    <h1 className="ml-24 font-semibold text-[#055C5B] text-center font-[Inter, sans-serif] text-2xl">Form Tambah User</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="flex space-x-4 mb-4 ml-20 mt-4">
+                            <div>
+                                <p className="text-[#055C5B] font-medium ml-1" style={{ fontFamily: 'Inter, sans-serif' }}>Username*</p>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    className='bg-[#EFF5F5] mt-2 h-9 w-[440px] rounded-3xl pl-4'
+                                    value={user.username}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <p className="text-[#055C5B] font-medium ml-1" style={{ fontFamily: 'Inter, sans-serif' }}>Nama*</p>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className='bg-[#EFF5F5] h-9 w-[440px] rounded-3xl pl-4 mt-2'
+                                    value={user.name}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <p className="text-[#055C5B] font-medium mt-2 ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>Email*</p>
                         <input
                             type="text"
-                            name="username"
-                            value={user.username}
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={user.name}
-                            onChange={handleChange}
-                            className="form-control bg-white"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Email:</label>
-                        <input
-                            type="email"
                             name="email"
+                            className='bg-[#EFF5F5] mt-1 h-9 w-[900px] rounded-3xl pl-4 ml-20'
                             value={user.email}
                             onChange={handleChange}
-                            className="form-control"
                             required
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Daerah:</label>
-                        <input
-                            type="text"
-                            name="daerah"
-                            value={user.daerah}
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Role:</label>
-                        <input
-                            type="text"
-                            name="role"
-                            value={user.role}
-                            onChange={handleChange}
-                            className="form-control"
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Add User</button>
-                </form>
+                        <div className="flex space-x-4 mb-4 mt-4">
+                            <div>
+                                <p className="text-[#055C5B] font-medium ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>Domisili*</p>
+                                <select
+                                    name="daerah"
+                                    className='h-9 w-[440px] bg-[#EFF5F5] mt-2 rounded-3xl pl-4 ml-20 custom-dropdown'
+                                    value={user.daerah}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="None">None</option>
+                                    <option value="Jakarta">Jakarta</option>
+                                    <option value="Banten">Banten</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="Jawa Tengah">Jawa Tengah</option>
+                                    <option value="Jawa Timur">Jawa Timur</option>
+                                    <option value="Yogyakarta">Yogyakarta</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p className="text-[#055C5B] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Peran*</p>
+                                <select
+                                    name="role"
+                                    className='h-9 w-[440px] bg-[#EFF5F5] mt-2 rounded-3xl pl-4 custom-dropdown'
+                                    value={user.role}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="None">None</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Pemerintah">Pemerintah</option>
+                                    <option value="Petani">Petani</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div className="flex justify-center mt-4">
+                            <button
+                                type="submit"
+                                className="bg-[#055C5B] font-medium text-white rounded-md hover:bg-[#2DB296] focus:outline-none w-[120px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#055C5B] ml-24 mt-8"
+                            >
+                                Add User
+                            </button>
+                        </div>
+                    </form>
+                    {successMessage && (
+                        <div className="absolute top-40 ml-16 left-1/2 transform -translate-x-1/2 bg-green-100 p-4 rounded-lg shadow-lg flex items-center">
+                            <p className="text-green-500">{successMessage}</p>
+                        </div>
+                    )}
+                    {errorMessage && (
+                        <div className="absolute top-40 ml-16 left-1/2 transform -translate-x-1/2 bg-red-100 p-4 rounded-lg shadow-lg flex items-center">
+                            <p className="text-red-500">{errorMessage}</p>
+                        </div>
+                    )}
                 </div>
             </div>
+            <ConfirmationModal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleConfirm}
+                message="Apakah Anda yakin ingin membuat user?"
+            />
         </React.Fragment>
     );
 }
