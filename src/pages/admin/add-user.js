@@ -71,12 +71,16 @@ function AddUser() {
                 }, 3000);
             } else {
                 const errorData = await response.json();
-                setErrorMessage(errorData.message || "❌ Gagal tambah User");
-                setSuccessMessage("");
+                setErrorMessage(errorData.message || "❌ Gagal Masuk");
+                setTimeout(() => {
+                setErrorMessage("");
+                }, 2000);
             }
         } catch (error) {
-            setErrorMessage("❌ Terjadi Error coba lagi nanti");
-            setSuccessMessage("");
+            setErrorMessage("❌ Terjadi error. Coba lagi nanti");
+            setTimeout(() => {
+                setErrorMessage("");
+            }, 2000);
         }
         setLoading(false);
     };

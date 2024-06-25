@@ -2,9 +2,11 @@ import React from 'react';
 
 function ListPertanian() {
     return (
-        <div style={{ marginLeft: "12%", position: "absolute"}} className="w-9/12">
+        <React.Fragment>
+        <div style={{ marginLeft: "10%", position: "absolute"}} className="w-9/12">
             
         </div>
+        </React.Fragment>
     );
 }
 
