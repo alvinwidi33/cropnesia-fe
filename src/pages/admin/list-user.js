@@ -115,42 +115,42 @@ function ListUser() {
                         </Link>
                     </div>
                     <table className="w-[108%] bg-white border border-[#055C5B] rounded-xl overflow-hidden mt-1">
-                        <thead className="bg-[#055C5B] text-white">
-                            <tr>
-                                <th className="py-2 px-4 text-center">Role</th>
-                                <th className="py-2 px-4 text-center">Nama</th>
-                                <th className="py-2 px-4 text-center">Username</th>
-                                <th className="py-2 px-4 text-center">Email</th>
-                                <th className="py-2 px-4 text-center">Domisili</th>
-                                <th className="py-2 px-4 text-center">Tanggal Pembuatan</th>
-                                <th className="py-2 px-4 text-center">Waktu Pembuatan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredUsers.map((user) => (
-                                <tr key={user.user_id} className="border-b border-[#055C5B]">
-                                    <td className="py-2 px-4 text-center">{user.role}</td>
-                                    <td className="py-2 px-4 text-center">{user.name}</td>
-                                    <td className="py-2 px-4 text-center">{user.username}</td>
-                                    <td className="py-2 px-4 text-center">{user.email}</td>
-                                    <td className="py-2 px-4 text-center">{user.daerah}</td>
-                                    <td className="py-2 px-4 text-center">
-                                        {new Date(user.datetime_created).toLocaleDateString('id-ID', {
-                                            day: 'numeric',
-                                            month: 'long',
-                                            year: 'numeric'
-                                        })}
-                                    </td>
-                                    <td className="py-2 px-4 text-center">
-                                        {new Date(user.datetime_created).toLocaleTimeString('id-ID', {
-                                            hour: '2-digit',
-                                            minute: '2-digit'
-                                        })}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+    <thead className="bg-[#055C5B] text-white">
+        <tr>
+            <th className="py-2 px-4 text-center">Role</th>
+            <th className="py-2 px-4 text-center">Nama</th>
+            <th className="py-2 px-4 text-center">Username</th>
+            <th className="py-2 px-4 text-center">Email</th>
+            <th className="py-2 px-4 text-center">Domisili</th>
+            <th className="py-2 px-4 text-center">Tanggal Pembuatan</th>
+            <th className="py-2 px-4 text-center">Waktu Pembuatan</th>
+        </tr>
+    </thead>
+    <tbody>
+        {filteredUsers.map((user, index) => (
+            <tr key={user.user_id} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+                <td className="py-2 px-4 text-center">{user.role}</td>
+                <td className="py-2 px-4 text-center">{user.name}</td>
+                <td className="py-2 px-4 text-center">{user.username}</td>
+                <td className="py-2 px-4 text-center">{user.email}</td>
+                <td className="py-2 px-4 text-center">{user.daerah}</td>
+                <td className="py-2 px-4 text-center">
+                    {new Date(user.datetime_created).toLocaleDateString('id-ID', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    })}
+                </td>
+                <td className="py-2 px-4 text-center">
+                    {new Date(user.datetime_created).toLocaleTimeString('id-ID', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}
+                </td>
+            </tr>
+        ))}
+    </tbody>
+</table>
                 </div>
             </div>
         </React.Fragment>
