@@ -39,8 +39,8 @@ function Navbar() {
         setSuccessMessage("✅ Berhasil Logout");
         window.localStorage.removeItem("token");
         setTimeout(() => {
-            navigate("/");
             setSuccessMessage("");
+            navigate("/");
         }, 2000);
     };
 
