@@ -96,7 +96,7 @@ function AddUser() {
                 <div className="w-full mt-8 ">
                     <h1 className="ml-24 font-semibold text-[#055C5B] text-center font-[Inter, sans-serif] text-2xl">Form Tambah User</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="flex space-x-4 mb-4 ml-20 mt-4">
+                        <div className="flex space-x-4 mb-4 ml-32 mt-4">
                             <div>
                                 <p className="text-[#055C5B] font-medium ml-1" style={{ fontFamily: 'Inter, sans-serif' }}>Username*</p>
                                 <input
@@ -120,21 +120,21 @@ function AddUser() {
                                 />
                             </div>
                         </div>
-                        <p className="text-[#055C5B] font-medium mt-2 ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>Email*</p>
+                        <p className="text-[#055C5B] font-medium mt-2 ml-32" style={{ fontFamily: 'Inter, sans-serif' }}>Email*</p>
                         <input
                             type="text"
                             name="email"
-                            className='bg-[#EFF5F5] mt-1 h-9 w-[900px] rounded-3xl pl-4 ml-20'
+                            className='bg-[#EFF5F5] mt-1 h-9 w-[900px] rounded-3xl pl-4 ml-32'
                             value={user.email}
                             onChange={handleChange}
                             required
                         />
-                        <div className="flex space-x-4 mb-4 mt-4">
+                        <div className="flex space-x-4 mb-4 mt-4 ml-32">
                             <div>
-                                <p className="text-[#055C5B] font-medium ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>Domisili*</p>
+                                <p className="text-[#055C5B] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Domisili*</p>
                                 <select
                                     name="daerah"
-                                    className='h-9 w-[440px] bg-[#EFF5F5] mt-2 rounded-3xl pl-4 ml-20 custom-dropdown'
+                                    className='h-9 w-[440px] bg-[#EFF5F5] mt-2 rounded-3xl pl-4 custom-dropdown'
                                     value={user.daerah}
                                     onChange={handleChange}
                                     required
@@ -162,7 +162,6 @@ function AddUser() {
                                     <option value="Pemerintah">Pemerintah</option>
                                     <option value="Petani">Petani</option>
                                 </select>
-
                             </div>
                         </div>
                         <div className="flex justify-center mt-4">
