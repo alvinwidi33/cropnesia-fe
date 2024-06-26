@@ -50,14 +50,14 @@ function ListUser() {
             <div style={{ marginLeft: "10%", position: "absolute" }} className="w-9/12">
                 <div className="w-full mt-8">
                     <h1 className="ml-24 font-semibold text-[#055C5B] text-center font-[Inter, sans-serif] text-2xl">Daftar User</h1>
-                    <Link to='/add-user'>
                     <div className="flex justify-end mr-[-72px]">
+                        <Link to='/add-user'>
                         <button
                             className="bg-[#055C5B] font-medium text-white rounded-md hover:bg-[#2DB296] focus:outline-none w-[120px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#055C5B] mt-3">
                             Tambah User
                         </button>
+                        </Link>
                     </div>
-                    </Link>
                     <table className="w-[108%] bg-white border border-[#055C5B] rounded-xl overflow-hidden mt-1">
                         <thead className="bg-[#055C5B] text-white">
                             <tr>
