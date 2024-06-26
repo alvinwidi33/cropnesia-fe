@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar-admin';
 import Loading from '../../components/loading';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import ConfirmationModal from '../../components/confirmation-modal'; // Adjust the import path as needed
 
 function AddUser() {
@@ -96,7 +96,7 @@ function AddUser() {
                 <div className="w-full mt-8 ">
                     <h1 className="ml-24 font-semibold text-[#055C5B] text-center font-[Inter, sans-serif] text-2xl">Form Tambah User</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="flex space-x-4 mb-4 ml-32 mt-4">
+                        <div className="flex space-x-4 mb-4 ml-20 mt-4">
                             <div>
                                 <p className="text-[#055C5B] font-medium ml-1" style={{ fontFamily: 'Inter, sans-serif' }}>Username*</p>
                                 <input
@@ -120,16 +120,16 @@ function AddUser() {
                                 />
                             </div>
                         </div>
-                        <p className="text-[#055C5B] font-medium mt-2 ml-32" style={{ fontFamily: 'Inter, sans-serif' }}>Email*</p>
+                        <p className="text-[#055C5B] font-medium mt-2 ml-20" style={{ fontFamily: 'Inter, sans-serif' }}>Email*</p>
                         <input
                             type="text"
                             name="email"
-                            className='bg-[#EFF5F5] mt-1 h-9 w-[900px] rounded-3xl pl-4 ml-32'
+                            className='bg-[#EFF5F5] mt-1 h-9 w-[900px] rounded-3xl pl-4 ml-20'
                             value={user.email}
                             onChange={handleChange}
                             required
                         />
-                        <div className="flex space-x-4 mb-4 mt-4 ml-32">
+                        <div className="flex space-x-4 mb-4 mt-4 ml-20">
                             <div>
                                 <p className="text-[#055C5B] font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Domisili*</p>
                                 <select
@@ -164,15 +164,20 @@ function AddUser() {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex justify-center mt-4">
                             <button
                                 type="submit"
-                                className="bg-[#055C5B] font-medium text-white rounded-md hover:bg-[#2DB296] focus:outline-none w-[120px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#055C5B] ml-24 mt-8"
+                                className="bg-[#055C5B] font-medium text-white rounded-md hover:bg-[#2DB296] focus:outline-none w-[120px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#055C5B] ml-[540px] mt-8"
                             >
                                 Add User
                             </button>
-                        </div>
                     </form>
+                    <Link to="/list-user">
+                        <button
+                            className="bg-[#B1E5D9] font-medium text-[#055C5B] rounded-md hover:bg-[#EFF5F5] focus:outline-none w-[120px] h-9 flex items-center justify-center transition-all duration-200 active:bg-[#B1E5D9] ml-[400px] mt-[-36px]"
+                        >
+                            Cancel
+                        </button>
+                    </Link>
                     {successMessage && (
                         <div className="absolute top-40 ml-16 left-1/2 transform -translate-x-1/2 bg-green-100 p-4 rounded-lg shadow-lg flex items-center">
                             <p className="text-green-500">{successMessage}</p>

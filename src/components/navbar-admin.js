@@ -48,9 +48,6 @@ function Navbar() {
         <React.Fragment>
             <div className="relative flex items-center justify-between">
                 <img src={logo} alt="logo" className="w-16 h-auto ml-10" />
-                <Link to="/list-user">
-                <p className="absolute top-0 left-32 mt-6 text-xl font-normal text-[#055C5B] font-[Inter, sans-serif]">Beranda</p>
-                </Link>
                 <h1 className="text-center text-4xl font-semibold text-[#055C5B] absolute w-full font-[Inter, sans-serif]" style={{ top: '16px' }}>
                     Cropnesia
                 </h1>
